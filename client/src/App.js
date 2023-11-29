@@ -12,10 +12,10 @@ const App = () => {
       path: "/",
       element: <Skates />
     },
-    // {
-    //   path: "/mycart",
-    //   element: <MyCart />
-    // }
+    {
+      path: "/mycart",
+      element: <MyCart />
+    }
   ]);
 
   return (

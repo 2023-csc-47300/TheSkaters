@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/Skates.css'
 import Card from '../components/Card'
 
-const Skates = () => {
+const Skates = (props) => {
 
     // const [gifts, setGifts] = useState([])
 
