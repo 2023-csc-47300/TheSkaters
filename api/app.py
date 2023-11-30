@@ -6,7 +6,7 @@ import flask
 import configuration
 import database
 import login_manager
-from models.product import product_blueprint
+from controllers.product import product_blueprint
 
 
 def bad_request(error: typing.Any) -> flask.Response:
