@@ -42,24 +42,14 @@ Response Format: JSON
 
 [
     {
-        "id": 1,
+        "color": "red",
+        "description": "test",
+        "model": "y-4",
         "name": "Pro Speed Rollerblades",
-        "type": "Fitness",
-        "price": 149.99,
-        "model": "AB4G92CD",
-        "size": "M",
-        "color": "Red",
-        "description": "Designed for maximum speed and performance."
-    },
-    {
-        "id": 2,
-        "name": "UltraGlide Inline Skates",
-        "type": "Speed",
-        "price": 189.5,
-        "model": "XY7H34ZR",
-        "size": "L",
-        "color": "Blue",
-        "description": "Perfect for tricks and stunts, built to last."
+        "price": "100",
+        "product_id": 1,
+        "size": "7",
+        "type": "rollerblades"
     },
     ...
 ]
