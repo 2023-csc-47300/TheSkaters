@@ -22,7 +22,7 @@ python3 app.py
 
 ## API Routes
 
-## Products
+### Products
 
 #### Fetching Products
 
