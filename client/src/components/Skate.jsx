@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/Card.css'
+import '../styles/Component.css'
 import more from '../assets/more.png'
 import logo from '../assets/logo.png'
 // import name from 'api '
@@ -8,18 +8,42 @@ import logo from '../assets/logo.png'
 const Skate = (props) => { 
     
     
+    let name = props.name,
+        color = props.color,
+        description = props.description,
+        model = props.model,
+        price = props.price,
+        product_id = props.product_id,
+        size = props.size,
+        type = props.type;
 
+        // skateComp for skate Component
     return (
-        <div className="skate">
-            <div className='top-container' style={{ backgroundImage:`url(${logo})`}}>
-                <Link to={'/edit/'}><img src={more} /></Link>
+        <div className="skateComp">
+            <div className="skateInfo-container">
+                <div className="skateInfo-text">
+                    <h1>{name}</h1>
+                    <span className="model">Model:</span>
+                    <span className="type">Type:</span>
+                    <span className="color">Color:</span>
+                    <span className="price">Price:</span>
+                    <span className="size">Size:</span>
+                    <span className="product_id">ID:</span>
+                </div>
+                <div className="skateInfo">
+                    <h1>{name}</h1>
+                    <span className="model">{model}</span>
+                    <span className="type">{type}</span>
+                    <span className="color">{color}</span>
+                    <span className="price">{price}</span>
+                    <span className="size">{size}</span>
+                    <span className="product_id">{product_id}</span>
+                </div>
             </div>
-            <div className='bottom-container'>
-                <h2>{props.Name}</h2>
-                <p>Price: {props.Price}</p>
-                <p>what else</p>
-                <Link to={'/skates/'}><a>Read More →</a></Link>
-            </div>
+
+            <div className="skatePic"><img alt="SkatePic" /></div>
+
+            <div className="skateDescription">{description}</div>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import '../styles/Home.css';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
 
@@ -30,15 +31,15 @@ const Home = (props) => {
 
                 <span className="third-left">
                     <h1>Buy Parts?</h1>
-                    <Link to="/myCart"><button className='addBtn'>Buy Parts</button></Link>
+                    <Link to="/myCart"><button className='homeBtn'>Buy Parts</button></Link>
                 </span>
                 <span className="third-middle">
                     <h1>Buy Skates?</h1>
-                    <Link to="/skates"><button className='addBtn'>Buy Skates</button></Link>
+                    <Link to="/skates"><button className='homeBtn'>Buy Skates</button></Link>
                 </span>
                 <span className="third-right">
-                    <h1>Log In?</h1>
-                    <Link to="/logIn"><button className='addBtn'>Log-In</button></Link>
+                    <h1>Go to Gallery</h1>
+                    <Link to="/gallery"><button className='homeBtn'>Gallery</button></Link>
                 </span>
 
             </div>
