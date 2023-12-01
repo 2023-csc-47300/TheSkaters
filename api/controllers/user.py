@@ -28,13 +28,19 @@ def check_user_credentials(email, password):
         cursor = conn.cursor()
 
         select_query = '''
-        SELECT EXISTS(SELECT 1 FROM users WHERE email = %s AND password = %s)
+        SELECT * FROM users WHERE email = %s AND password = %s
         '''
-        cursor.execute(select_query, (email, password))
-        exists = cursor.fetchone()[0]
-
-        cursor.close()
-        return exists
+        try:
+            cursor.execute(select_query, (email, password))
+            user_data = cursor.fetchone()
+            if user_data:
+                user = User(first_name=user_data[1], last_name=user_data[2], email=user_data[3], password=user_data[4])
+                user.user_id = user_data[0]  # Set the user_id attribute
+                return user
+        except Exception as e:
+            raise e
+        finally:
+            cursor.close()
 
 
 def load_user(user_id):
