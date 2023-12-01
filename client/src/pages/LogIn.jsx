@@ -26,6 +26,14 @@ const LogIn = (props) => {
                         product_id = "{props.product_id}"
                         size = "{props.size}"
                         type = "{props.type}" />
+                <Skate name = "Hello" 
+                        color = "Yellow" 
+                        description = "{props.description}" 
+                        model = "M1"
+                        price = "170"
+                        product_id = "{props.product_id}"
+                        size = "M"
+                        type = "{props.type}" />
 
             </div>
         </div>  

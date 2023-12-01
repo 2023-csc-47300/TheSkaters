@@ -22,7 +22,7 @@ const Skate = (props) => {
         <div className="skateComp">
             <div className="skateInfo-container">
                 <div className="skateInfo-text">
-                    <h1>{name}</h1>
+                    <h1>Name:</h1>
                     <span className="model">Model:</span>
                     <span className="type">Type:</span>
                     <span className="color">Color:</span>
@@ -41,7 +41,7 @@ const Skate = (props) => {
                 </div>
             </div>
 
-            <div className="skatePic"><img alt="SkatePic" /></div>
+            <div className="skatePic"><img src={logo} alt="SkatePic" /></div>
 
             <div className="skateDescription">{description}</div>
         </div>
