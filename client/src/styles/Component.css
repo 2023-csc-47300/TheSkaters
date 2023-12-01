@@ -15,6 +15,8 @@
     align-items: center;
     justify-content: space-between;
     border: 3px solid black;
+    height: 30vh;
+    margin: 30px;
 }
 
 .skateInfo-container{
@@ -42,4 +44,9 @@
     flex-wrap: wrap;
     align-items: flex-end;
     padding: 20px;
+}
+
+.skatePic img {
+    height: 28vh;
+    display: block;
 }
