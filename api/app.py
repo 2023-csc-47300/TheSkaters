@@ -7,6 +7,7 @@ import configuration
 import database
 import login_manager
 from controllers.product import product_blueprint
+from controllers.user import user_blueprint
 
 
 def bad_request(error: typing.Any) -> flask.Response:
@@ -96,6 +97,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     
     # Load the "product" routes onto the Flask Application. 
     app.register_blueprint(product_blueprint, url_prefix="/products")
+    app.register_blueprint(user_blueprint, url_prefix="/users")
 
     # Register an error handler for 400 (Bad Request). The Flask Application
     # will call the error handler when the application returns a 400

@@ -4,10 +4,10 @@ import flask
 import flask_login
 
 from database import conn
-from models.product import product
+from models.product import Product
 
 
-product_blueprint = flask.Blueprint("actors", __name__)
+product_blueprint = flask.Blueprint("products", __name__)
 
 @product_blueprint.route("/", methods=["GET"])
 def get_products():
