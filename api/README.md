@@ -22,7 +22,9 @@ python3 app.py
 
 ## API Routes
 
-### Fetching Products
+## Products
+
+#### Fetching Products
 
 Endpoint: http://127.0.0.1:8080/products/
 
@@ -53,4 +55,80 @@ Response Format: JSON
     },
     ...
 ]
+```
+
+### Users
+
+#### Sign Up
+
+Endpoint: http://127.0.0.1:8080/users/signup
+
+Description: sign up a new user
+
+HTTP Method: POST
+
+Example:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "josdfahn@asdfasexample.com",
+    "password": "password123"
+}' http://127.0.0.1:8080/users/signup
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "email": "josdfahnn@asdfasexample.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "user_id": 4
+}
+```
+
+#### Log In
+
+Endpoint: http://127.0.0.1:8080/users/login
+
+Description: login existing user
+
+HTTP Method: POST
+
+Example:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{
+    "email": "josdfahn@asdfasexample.com",
+    "password": "password123"
+}' http://127.0.0.1:8080/users/login
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "email": "josdfahnn@asdfasexample.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "user_id": 4
+}
+```
+
+#### Log Out
+
+Endpoint: http://127.0.0.1:8080/users/logout
+
+Description: logout
+
+HTTP Method: POST
+
+Example:
+
+```bash
+curl -X POST http://127.0.0.1:8080/users/logout
 ```
