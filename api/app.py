@@ -9,6 +9,8 @@ import login_manager
 from controllers.product import product_blueprint
 from controllers.user import user_blueprint
 
+from flask_cors import CORS
+
 
 def bad_request(error: typing.Any) -> flask.Response:
     """
@@ -80,6 +82,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
 
     # Initialize the Flask Application.
     app = flask.Flask(__name__)
+    CORS(app)
 
     # Load the configuration pertaining to the environment you're in
     # e.g., development, production, or testing.
