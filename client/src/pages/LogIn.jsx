@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import '../styles/Skates.css'
-import Card from '../components/Card'
+import React, { useState, useEffect } from 'react';
+import '../styles/Pages.css';
+import Skate from '../components/Skate';
 
 const LogIn = (props) => {
 
@@ -11,25 +11,23 @@ const LogIn = (props) => {
     // }, [props])
     
     return (
-        <div className="LogIn">
-            <main>
-            {/* {
-                gifts && gifts.length > 0 ?
-                gifts.map((gift,index) => 
-                    
-                   <Card id={gift.id} 
-                         image={gift.image} 
-                         name={gift.name} 
-                         pricepoint={gift.pricepoint} 
-                         audience={gift.audience} />
-
-                ) : <h3 className="noResults">{'No Gifts Yet 😞'}</h3>
-            } */}
-            <div>
-            <h1>Welcome to Log-In</h1>
-            <p>Would you rather to sign in Locally or through Google?</p>
+        <div className="login-main">
+            <div className="login-text">
+                <h1>Welcome to Log-In</h1>
+                <p>Would you rather to sign in Locally or through Google?</p>
             </div>
-            </main>
+
+            <div className="skate-div">
+                <Skate name = "SkateName" 
+                        color = "SkateColor:blue" 
+                        description = "{props.description}" 
+                        model = "{props.model}"
+                        price = "{props.price}"
+                        product_id = "{props.product_id}"
+                        size = "{props.size}"
+                        type = "{props.type}" />
+
+            </div>
         </div>  
     )
 }

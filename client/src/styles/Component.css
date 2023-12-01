@@ -1,0 +1,45 @@
+
+
+/* Local CSS */
+.local-sign-in {
+    position: relative;
+    height: 20vh;
+    background: rgb(100, 100, 100);
+}
+
+
+/* Skate CSS */
+.skateComp {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid black;
+}
+
+.skateInfo-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 30%;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.skateInfo {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.skateInfo-text {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 20px;
+}

@@ -37,8 +37,8 @@ const App = () => {
 
   return (
     <div className="App">
-
-      <header>
+    
+      <header className="navBar">
         <div className="header-container">
           <div className="header-left">
             <Link to="/">

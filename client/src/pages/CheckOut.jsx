@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReactDOM from 'react-dom/client';
 import '../styles/Skates.css'
 import Card from '../components/Card'
 
@@ -9,6 +10,8 @@ const CheckOut = (props) => {
     // useEffect(() => {
     //     setGifts(props.data)
     // }, [props])
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
     
     return (
         <div className="CheckOut">

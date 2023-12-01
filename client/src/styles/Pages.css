@@ -1,0 +1,23 @@
+
+
+
+/* Login CSS */
+.login-main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.login-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.skate-div {
+    margin: 5%;
+}
