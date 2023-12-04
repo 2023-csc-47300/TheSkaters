@@ -33,7 +33,8 @@ def get_products():
                 "model": row[4],
                 "size": row[5],
                 "color": row[6],
-                "description": row[7]
+                "description": row[7],
+                "image_url": row[8]
             }
             products.append(product)
 

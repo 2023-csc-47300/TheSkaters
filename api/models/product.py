@@ -18,7 +18,8 @@ def create_table():
             model VARCHAR(255),
             size VARCHAR(255),
             color VARCHAR(255),
-            description TEXT
+            description TEXT,
+            image_url VARCHAR(255)
         )
     '''
 
@@ -54,7 +55,7 @@ def drop_table():
 
 
 class Product:
-    def __init__(self, name='', price=0, model = '', size = '', color = '', description = ''):
+    def __init__(self, name='', price=0, model = '', size = '', color = '', description = '', image_url = ''):
         self.product_id = None
         self.name = name
         self.price = price
@@ -62,5 +63,6 @@ class Product:
         self.size = size
         self.color = color
         self.description = description
+        self.image_url = image_url
 
 create_table()
