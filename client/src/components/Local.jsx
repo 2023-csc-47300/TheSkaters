@@ -13,10 +13,10 @@ const Local = (props) => {
 
             <form action="/action_page.php" className="local-form">
                 <label for="email" className="local-email">eMail:</label>
-                    <input type="text" id="email" name="email"><br><br>
+                    <input type="text" id="email" name="email" /><br></br>
                 <label for="password" className="local-password">Password:</label>
-                    <input type="text" id="password" name="password"><br><br>
-                <input type="submit" value="Submit">
+                    <input type="text" id="password" name="password" /><br></br>
+                <input type="submit" value="Submit" />
             </form>
 
 
