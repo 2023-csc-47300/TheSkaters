@@ -131,6 +131,32 @@ Response Format: JSON
 }
 ```
 
+#### Confirm Log In
+
+Endpoint: http://127.0.0.1:8080/users/login
+
+Description: login existing user
+
+HTTP Method: Get
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/users/login
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "email": "josdfahnn@asdfasexample.com",
+  "first_name": "John",
+  "last_name": "Doe",
+  "user_id": 4
+}
+```
+
 #### Log Out
 
 Endpoint: http://127.0.0.1:8080/users/logout
