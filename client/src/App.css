@@ -1,8 +1,8 @@
 /* Header CSS */
 .header-container {
   overflow: hidden;
-  padding: 20px 10px;
-  padding-bottom: 60px;
+  /* padding: 20px 10px; */
+  padding-bottom: 20px;
 }
 
 .header-left {
@@ -24,11 +24,11 @@
 .header-right {
   float: right;
   padding-top: 30px;
-  padding-right: 10px;
+  /* padding-right: 10px; */
 }
 
-.header-right button {
-  background-color: white;
+.partsBtn, .skatesBtn, .gearBtn, .logInBtn {
+  background-color: rgb(228, 219, 224);
   border: solid;
   border-width: 3px;
   border-color: rgb(3, 7, 89);
@@ -41,23 +41,32 @@
   text-align: center;
   text-transform: uppercase;
   touch-action: manipulation;
+  margin-right: 20px;
 }
 
+.cartBtn {
+  font-size: 1em;
+  background-color: rgb(228, 219, 224);
+  border: solid;
+  border-width: 3px;
+  border-color: rgb(3, 7, 89);
+  border-radius: 0.1rem;
+  border-radius: 16px;
+  box-sizing: border-box;
+  color: rgb(3, 7, 89);
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 10.5px;
+  padding-left: 12px;
+  padding-right: 12px;
 
-
-
-
-
-
-
-/* App CSS */
-
-.App {
-  background: pink;
-  margin: 100px;
-  border:2px solid black;
+  /* padding: 0 16px; */
+  text-align: center;
+  /* text-transform: uppercase; */
+  touch-action: manipulation;
+  margin-right: 20px;
 }
 
 .navBar {
-  border-bottom: 1px dashed black;
-}
+  border-bottom: 2px solid black;
+}  

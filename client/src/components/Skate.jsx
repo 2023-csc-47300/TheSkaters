@@ -15,7 +15,9 @@ const Skate = (props) => {
         price = props.price,
         product_id = props.product_id,
         size = props.size,
-        type = props.type;
+        type = props.type,
+        image = props.image;
+
 
         // skateComp for skate Component
     return (
@@ -41,7 +43,7 @@ const Skate = (props) => {
                 </div>
             </div>
 
-            <div className="skatePic"><img src={logo} alt="SkatePic" /></div>
+            <div className="skatePic"><img src={image} alt="SkatePic" /></div>
 
             <div className="skateDescription">{description}</div>
         </div>

@@ -8,8 +8,31 @@ import CheckOut from './pages/CheckOut';
 import Skates from './pages/Skates';
 import LogIn from './pages/LogIn';
 import logo from './assets/logo.png'
+import Parts from './pages/Parts';
+import Gear from './pages/Gear';
+import ProductAPI from './services/ProductAPI';
 
 const App = () => {
+  const [products, setProducts] = useState([]);
+  const [skates, setSkates] = useState([]);
+  const [parts, setParts] = useState([]);
+  const [gear, setGear] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productsData = await ProductAPI.getProducts();
+      setProducts(productsData);
+
+      const skatesData = productsData.filter(product => product.type === 'inline_skates' || product.type === 'quad_skates');
+      const partsData = productsData.filter(product => product.type === 'wheels');
+      const gearData = productsData.filter(product => product.type === 'gear');
+
+      setSkates(skatesData);
+      setParts(partsData);
+      setGear(gearData);
+    }
+    fetchProducts();
+  }, [])
 
   let element = useRoutes([
     {
@@ -18,7 +41,15 @@ const App = () => {
     },
     {
       path: "/skates",
-      element: <Skates />
+      element: <Skates skates={skates} />
+    },
+    {
+      path: "/parts",
+      element: <Parts parts={parts} />
+    },
+    {
+      path: "/gear",
+      element: <Gear gear={gear} />
     },
     {
       path: "/myCart",
@@ -32,13 +63,13 @@ const App = () => {
       path: "/logIn",
       element: <LogIn />
     }
-    
+
   ]);
 
   return (
     <div className="App">
-    
-      <header className="navBar">
+
+      <header className='navBar'>
         <div className="header-container">
           <div className="header-left">
             <Link to="/">
@@ -47,9 +78,11 @@ const App = () => {
             </Link>
           </div>
           <div className="header-right">
-            <Link to="/skates"><button className='addBtn'>Skates</button></Link>
-            <Link to="/myCart"><button className='addBtn'>My Cart</button></Link>
-            <Link to="/logIn"><button className='addBtn'>Log-In</button></Link>
+            <Link to="/parts"><button className='partsBtn'>Parts</button></Link>
+            <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
+            <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
+            <Link to="/myCart"><button className='cartBtn'>🛒</button></Link>
+            <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
           </div>
         </div>
       </header>
