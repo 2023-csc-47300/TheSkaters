@@ -6,8 +6,6 @@ import Card from '../components/Card';
 
 const Home = (props) => {
 
-    // const [gifts, setGifts] = useState([])
-
     // useEffect(() => {
     //     setGifts(props.data)
     // }, [props])
@@ -31,15 +29,15 @@ const Home = (props) => {
 
                 <span className="third-left">
                     <h1>Buy Parts?</h1>
-                    <Link to="/myCart"><button className='homeBtn'>Buy Parts</button></Link>
+                    <Link to="/parts"><button className='homeBtn'>Buy Parts</button></Link>
                 </span>
                 <span className="third-middle">
                     <h1>Buy Skates?</h1>
                     <Link to="/skates"><button className='homeBtn'>Buy Skates</button></Link>
                 </span>
                 <span className="third-right">
-                    <h1>Go to Gallery</h1>
-                    <Link to="/gallery"><button className='homeBtn'>Gallery</button></Link>
+                    <h1>Buy Gear?</h1>
+                    <Link to="/gear"><button className='homeBtn'>Buy Gear</button></Link>
                 </span>
 
             </div>
