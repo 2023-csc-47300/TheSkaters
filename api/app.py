@@ -8,10 +8,11 @@ import database
 import login_manager
 from controllers.product import product_blueprint
 from controllers.user import user_blueprint
-# from controllers.user import github_auth_blueprint  
-
 
 from flask_cors import CORS
+
+from flask_dance.contrib.github import make_github_blueprint, github
+from flask import redirect, url_for
 
 
 def bad_request(error: typing.Any) -> flask.Response:
@@ -85,6 +86,22 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     # Initialize the Flask Application.
     app = flask.Flask(__name__)
     CORS(app)
+
+    github_blueprint = make_github_blueprint(client_id=os.environ.get("GITHUB_CLIENT_ID"), client_secret=os.environ.get("GITHUB_CLIENT_SECRET"))
+    app.register_blueprint(github_blueprint, url_prefix='/github_login')
+
+    @app.route('/github')
+    def github_login():
+        if not github.authorized:
+            return redirect(url_for('github.login'))
+        
+        account_info = github.get('/user')
+
+        if account_info.ok:
+            account_info_json = account_info.json()
+            return '<h1>Your github name is {}</h1>'.format(account_info_json['login'])
+        
+        return '<h1>Request failed!</h1>'
 
     # Load the configuration pertaining to the environment you're in
     # e.g., development, production, or testing.

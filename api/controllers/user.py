@@ -10,7 +10,6 @@ import login_manager
 
 user_blueprint = flask.Blueprint("users", __name__)
 
-
 def check_user_exists(email):
         cursor = conn.cursor()
 
