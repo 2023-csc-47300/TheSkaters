@@ -9,6 +9,7 @@ from models.product import Product
 
 product_blueprint = flask.Blueprint("products", __name__)
 
+
 @product_blueprint.route("/", methods=["GET"])
 def get_products():
     limit = flask.request.args.get("limit")
@@ -44,3 +45,33 @@ def get_products():
 
     except Exception as e:
         return f"Error fetching products: {e}", 500
+
+
+@product_blueprint.route("/getbyid", methods=["GET"])
+def get_product_by_id():
+    product_id = flask.request.args.get("product_id")
+
+    query = "SELECT * FROM products WHERE product_id = %s"
+
+    try:
+        cursor = conn.cursor()
+        cursor.execute(query, (product_id,))
+        results = cursor.fetchone()
+        product = {
+            "product_id": results[0],
+            "name": results[1],
+            "type": results[2],
+            "price": results[3],
+            "model": results[4],
+            "size": results[5],
+            "color": results[6],
+            "description": results[7],
+            "image_url": results[8]
+        }
+
+        cursor.close()
+
+        return flask.jsonify(product)
+
+    except Exception as e:
+        return f"Error fetching product by id: {e}", 500
