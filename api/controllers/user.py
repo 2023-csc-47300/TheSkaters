@@ -2,10 +2,12 @@ import datetime
 
 import flask
 import flask_login
+from flask import redirect, url_for
 
 from database import conn
 from models.user import User
 import login_manager
+from flask_dance.contrib.github import github
 
 
 user_blueprint = flask.Blueprint("users", __name__)
@@ -185,3 +187,17 @@ def logout():
 @login_manager.login_manager.user_loader
 def load_user(user_id):
     return load_user(user_id)
+
+
+@user_blueprint.route('/github')
+def github_login():
+    if not github.authorized:
+        return redirect(url_for('github.login'))
+    
+    account_info = github.get('/user')
+
+    if account_info.ok:
+        account_info_json = account_info.json()
+        return account_info_json
+    
+    return 'Request failed!'
