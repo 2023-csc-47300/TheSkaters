@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Skates.css';
 import Card from '../components/Card';
-import ProductAPI from '../services/ProductAPI';
-import Skate from '../components/Skate';
 
 const Skates = ({ skates }) => {
     const [showInline, setShowInline] = useState(false);
@@ -34,27 +32,33 @@ const Skates = ({ skates }) => {
 
     return (
         <>
-            <div>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="inline"
-                        checked={showInline}
-                        onChange={handleCheckboxChange}
-                    />
+            <div className="form-check">
+                <input
+                    type="checkbox"
+                    id="inlineCheckbox"
+                    name="inline"
+                    className="form-check-input"
+                    checked={showInline}
+                    onChange={handleCheckboxChange}
+                />
+                <label className="form-check-label" for="inlineCheckbox" style={{ marginRight: '50px' }}>
                     Inline Skates
                 </label>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="quad"
-                        checked={showQuad}
-                        onChange={handleCheckboxChange}
-                    />
+
+                <input
+                    type="checkbox"
+                    id="quadCheckbox"
+                    name="quad"
+                    className="form-check-input"
+                    checked={showQuad}
+                    onChange={handleCheckboxChange}
+                />
+                <label className="form-check-label" for="quadCheckbox">
                     Quad Skates
                 </label>
             </div>
-            <main>
+
+            <div className='products'>
                 {filteredSkates && filteredSkates.length > 0 ? (
                     filteredSkates.map((product, index) => (
                         <Card
@@ -74,7 +78,7 @@ const Skates = ({ skates }) => {
                 ) : (
                     <h3 className="noResults">{'Nothing Found'}</h3>
                 )}
-            </main>
+            </div>
         </>
     );
 };

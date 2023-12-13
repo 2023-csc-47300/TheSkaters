@@ -7,14 +7,14 @@ import logo from '../assets/logo.png'
 const Card = (props) => { 
 
     return (
-        <div className="card">
+        <div className="Card">
             <div className='top-container' style={{ backgroundImage:`url(${props.image})`}}>
             </div>
             <div className='bottom-container'>
                 <h3>{props.name}</h3>
                 <p>Price: ${props.price}</p>
                 <p>Model: {props.model}</p>
-                <Link to={`/skates/${props.product_id}`}><a>See More →</a></Link>
+                <Link to={`/skates/products/getbyid/${props.product_id}`}><a>See More →</a></Link>
             </div>
         </div>
     )
