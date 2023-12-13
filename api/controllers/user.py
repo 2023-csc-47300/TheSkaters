@@ -52,7 +52,7 @@ def load_user(user_id):
         cursor.execute(query, (user_id,))
         user_data = cursor.fetchone()
         if user_data:
-            user = User(first_name=user_data[1], last_name=user_data[2], email=user_data[3], password=user_data[4])
+            user = User(first_name=user_data[1], last_name=user_data[2], email=user_data[3], password=user_data[4], github=user_data[5])
             user.user_id = user_data[0]  # Set the user_id attribute
             return user
     except Exception as e:
@@ -78,7 +78,8 @@ def get_users():
                 "first_name": row[1],
                 "last_name": row[2],
                 "email": row[3],
-                "password": row[4]
+                "password": row[4],
+                "github": row[5]
             }
             users.append(user)
 
@@ -113,6 +114,7 @@ def signup():
     user.last_name = user_data["last_name"]
     user.email = user_data["email"]
     user.password = user_data["password"]
+    user.github = ""
 
     # Add the User to the database and commit the transaction.
     user.add_user_to_db()
@@ -126,6 +128,7 @@ def signup():
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
+            "github": user.github,
         }
     )
 
@@ -141,6 +144,7 @@ def confirm_login():
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
+            "github": user.github,
         }
     )
 
@@ -172,7 +176,8 @@ def login():
             "first_name": user.first_name,
             "last_name": user.last_name,
             "email": user.email,
-            "user_id": user.user_id
+            "user_id": user.user_id,
+            "github": user.github
         }
     )
 
@@ -185,7 +190,7 @@ def logout():
 
 
 @login_manager.login_manager.user_loader
-def load_user(user_id):
+def login_check_user(user_id):
     return load_user(user_id)
 
 
@@ -198,6 +203,37 @@ def github_login():
 
     if account_info.ok:
         account_info_json = account_info.json()
-        return account_info_json
-    
+        user_email = account_info_json.get('email')
+
+        user_exists = None
+        if user_email: 
+            user_exists = check_user_exists(user_email)
+
+        if not user_exists:
+            # Add the user to the database
+            user = User(
+                first_name=account_info_json.get('first_name'),
+                last_name=account_info_json.get('last_name'),
+                email=user_email,
+                password="",  # Assuming GitHub login doesn't provide a password
+                github=account_info_json.get('login')  # Saving GitHub identifier
+            )
+            user.add_user_to_db()  # Add user to the database
+            
+            print("User added to the database")
+        else:
+            print("User already exists in the database")
+            user = user_exists
+        
+        flask_login.login_user(user)
+        return flask.jsonify(
+            {
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.email,
+                "user_id": user.user_id,
+                "github": user.github
+            }
+        )
+
     return 'Request failed!'
