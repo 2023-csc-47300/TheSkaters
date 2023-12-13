@@ -16,7 +16,8 @@ def create_table():
             first_name VARCHAR(255),
             last_name VARCHAR(255),
             email VARCHAR(255),
-            password VARCHAR(255)
+            password VARCHAR(255),
+            github VARCHAR(255)
         )
     '''
 
@@ -33,7 +34,7 @@ def create_table():
         cursor.close()
 
 
-def drop_table(self):
+def drop_table():
     cursor = conn.cursor()
 
     drop_table_query = '''
@@ -52,12 +53,13 @@ def drop_table(self):
 
 
 class User(UserMixin):
-    def __init__(self, first_name='', last_name='', email='', password=''):
+    def __init__(self, first_name='', last_name='', email='', password='', github=''):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
         self.user_id = None
+        self.github = github
     
 
     def add_user_to_db(self):
@@ -65,10 +67,10 @@ class User(UserMixin):
         
 
         insert_query = '''
-        INSERT INTO users (first_name, last_name, email, password)
-        VALUES (%s, %s, %s, %s) RETURNING user_id
+        INSERT INTO users (first_name, last_name, email, password, github)
+        VALUES (%s, %s, %s, %s, %s) RETURNING user_id
         '''
-        data = (self.first_name, self.last_name, self.email, self.password)
+        data = (self.first_name, self.last_name, self.email, self.password, self.github)
 
         try:
             cursor.execute(insert_query, data)
