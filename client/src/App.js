@@ -1,22 +1,23 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import Home from './pages/Home';
 import MyCart from './pages/MyCart';
 import CheckOut from './pages/CheckOut';
 import Skates from './pages/Skates';
 import LogIn from './pages/LogIn';
-import logo from './assets/logo.png'
 import Parts from './pages/Parts';
 import Gear from './pages/Gear';
 import ProductAPI from './services/ProductAPI';
+import Navbar from './components/Navbar';
+import ProductDetails from './pages/ProductDetails';
 
 const App = () => {
   const [products, setProducts] = useState([]);
   const [skates, setSkates] = useState([]);
   const [parts, setParts] = useState([]);
   const [gear, setGear] = useState([]);
+  const [cartItems, setCartItems] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -33,6 +34,10 @@ const App = () => {
     }
     fetchProducts();
   }, [])
+
+  const addToCart = () => {
+    setCartItems(prevCount => prevCount + 1); // Increase the count of items in the cart
+  };
 
   let element = useRoutes([
     {
@@ -52,6 +57,18 @@ const App = () => {
       element: <Gear gear={gear} />
     },
     {
+      path: "/skates/products/getbyid/:id",
+      element: <ProductDetails addToCart={addToCart}/>
+    },
+    {
+      path: "/parts/products/getbyid/:id",
+      element: <ProductDetails addToCart={addToCart}/>
+    },
+    {
+      path: "/gear/products/getbyid/:id",
+      element: <ProductDetails addToCart={addToCart}/>
+    },
+    {
       path: "/myCart",
       element: <MyCart />
     },
@@ -69,23 +86,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <header className='navBar'>
-        <div className="header-container">
-          <div className="header-left">
-            <Link to="/">
-              <img src={logo} />
-              <h1>The Skaters</h1>
-            </Link>
-          </div>
-          <div className="header-right">
-            <Link to="/parts"><button className='partsBtn'>Parts</button></Link>
-            <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
-            <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
-            <Link to="/myCart"><button className='cartBtn'>🛒</button></Link>
-            <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
-          </div>
-        </div>
-      </header>
+      <Navbar cartItems={cartItems}/>
 
       {element}
 

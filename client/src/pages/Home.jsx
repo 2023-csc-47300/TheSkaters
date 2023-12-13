@@ -1,56 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../App.css';
 import '../styles/Home.css';
 import { Link } from 'react-router-dom';
-import Card from '../components/Card';
 
 const Home = (props) => {
 
-    // useEffect(() => {
-    //     setGifts(props.data)
-    // }, [props])
-    // Can Buy popular combinations
-
-    // Can buy wheels
-
-    // Can buy boot
-
-            // <!-- Want 3x1 span of divs   -->
     return (
         <div className="Home">
             <main>
 
-            <h1 className="welcome-text">Welcome to The Skaters Official Website</h1>
+                <h1 className="welcome-text">Welcome to The Skaters Official Website</h1>
 
-            
-            <div className="row-container">
-                <h3> Would you like to:</h3>
+                <div className="container text-center ">
+                    <h3 id='subtitle'> Would you like to:</h3>
 
+                    <div className="row">
+                        <div className="col">
+                            <div class="card" style={{ width: 18 + 'rem' }}>
+                                <img src="https://www.thisskatelife.com/wp-content/uploads/2022/08/the-parts-of-a-roller-skate-diagram-1024x1024.jpg" class="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <Link to="/parts"><button className='btn btn-primary'>Buy Parts?</button></Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card" style={{ width: 18 + 'rem' }}>
+                                <img src="https://i.pinimg.com/1200x/6c/a2/95/6ca295393cdcef7f5b4f8d99b52fa09b.jpg" className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <Link to="/skates"><button className='btn btn-primary'>Buy Skates?</button></Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="card" style={{ width: 18 + 'rem' }}>
+                                <img src="https://sc04.alicdn.com/kf/HTB1P1OxaRGE3KVjSZFhq6AkaFXam.jpg" className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <Link to="/gear"><button className='btn btn-primary'>Buy Gear?</button></Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <span className="third-left">
-                    <h1>Buy Parts?</h1>
-                    <Link to="/parts"><button className='homeBtn'>Buy Parts</button></Link>
-                </span>
-                <span className="third-middle">
-                    <h1>Buy Skates?</h1>
-                    <Link to="/skates"><button className='homeBtn'>Buy Skates</button></Link>
-                </span>
-                <span className="third-right">
-                    <h1>Buy Gear?</h1>
-                    <Link to="/gear"><button className='homeBtn'>Buy Gear</button></Link>
-                </span>
-
-            </div>
-
-
-
-
-
-
-
-            
             </main>
-        </div>  
+        </div>
     )
 }
 
