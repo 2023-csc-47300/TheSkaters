@@ -2,9 +2,17 @@ import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 import Cart from './Cart';
-import { useState } from 'react';
 
-const Navbar = ({ cartItems }) => {
+const Navbar = ({ cartItems, githubUser }) => {
+    const handleGitHubLogout = async () => {
+        // try {
+        //     const response = await UserAPI.loginViaGithub();
+        //     // Handle the response, possibly redirect the user or display data
+        //     console.log(response);
+        // } catch (error) {
+        //     console.error(error);
+        // }
+    };
 
     return (
         <header className='navBar'>
@@ -20,7 +28,11 @@ const Navbar = ({ cartItems }) => {
                     <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
                     <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
                     <Cart cartItems={cartItems} />
-                    <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
+                    {
+                        githubUser ?
+                            <button className='logInBtn' onClick={handleGitHubLogout}>{githubUser.github}</button>
+                            : <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
+                    }
                 </div>
             </div>
         </header>

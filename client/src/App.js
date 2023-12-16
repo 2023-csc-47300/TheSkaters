@@ -11,6 +11,7 @@ import Gear from './pages/Gear';
 import ProductAPI from './services/ProductAPI';
 import Navbar from './components/Navbar';
 import ProductDetails from './pages/ProductDetails';
+import UserAPI from './services/UserAPI';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -18,8 +19,15 @@ const App = () => {
   const [parts, setParts] = useState([]);
   const [gear, setGear] = useState([]);
   const [cartItems, setCartItems] = useState(null);
+  const [githubUser, setGithubUser] = useState();
 
   useEffect(() => {
+    const getGithubUser = async () => {
+      const response = await UserAPI.loggedInGithub();
+      setGithubUser(response)
+      console.log(response)
+    }
+
     const fetchProducts = async () => {
       const productsData = await ProductAPI.getProducts();
       setProducts(productsData);
@@ -32,6 +40,8 @@ const App = () => {
       setParts(partsData);
       setGear(gearData);
     }
+
+    getGithubUser();
     fetchProducts();
   }, [])
 
@@ -58,19 +68,19 @@ const App = () => {
     },
     {
       path: "/skates/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart}/>
+      element: <ProductDetails addToCart={addToCart} />
     },
     {
       path: "/parts/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart}/>
+      element: <ProductDetails addToCart={addToCart} />
     },
     {
       path: "/gear/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart}/>
+      element: <ProductDetails addToCart={addToCart} />
     },
     {
       path: "/myCart",
-      element: <MyCart />
+      element: githubUser ? <MyCart /> : <LogIn />
     },
     {
       path: "/myCart/checkOut",
@@ -86,7 +96,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <Navbar cartItems={cartItems}/>
+      <Navbar cartItems={cartItems} githubUser={githubUser}/>
 
       {element}
 
