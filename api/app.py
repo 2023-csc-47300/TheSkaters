@@ -87,7 +87,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
 
     # Initialize the Flask Application.
     app = flask.Flask(__name__)
-    CORS(app)
+    CORS(app, origins='*', supports_credentials=True)
 
     github_blueprint = make_github_blueprint(client_id=os.environ.get("GITHUB_CLIENT_ID"), client_secret=os.environ.get("GITHUB_CLIENT_SECRET"))
 
