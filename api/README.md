@@ -345,3 +345,129 @@ Response Format: JSON
 }
 
 ```
+
+### Carts
+
+#### Get all
+
+Endpoint: http://127.0.0.1:8080/carts
+
+HTTP Method: GET
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/carts
+```
+
+Response Format: JSON
+
+```json
+
+[
+  {
+    "cart_id": 1,
+    "item_id": 1,
+    "order_id": 9,
+    "quantity": 1
+  },
+  {
+    "cart_id": 3,
+    "item_id": 5,
+    "order_id": 9,
+    "quantity": 3
+  },
+  ...
+]
+
+```
+
+#### Add product to cart
+
+Endpoint: http://127.0.0.1:8080/carts/add?order_id=...&item_id=...&quantity=...
+quantity is optional, default to 1
+
+HTTP Method: GET
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/carts/add?order_id=10&item_id=3&quantity=2
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "cart_id": 5,
+  "item_id": 3,
+  "order_id": 10,
+  "quantity": 2
+}
+
+```
+
+#### Remove product from cart
+
+Endpoint: http://127.0.0.1:8080/carts/delete?cart_id=...
+
+HTTP Method: GET
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/carts/delete?cart_id=5
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "cart_id": 5,
+  "item_id": 3,
+  "order_id": 10,
+  "quantity": 2
+}
+
+```
+
+#### Get all carts for order_id
+
+Endpoint: http://127.0.0.1:8080/carts/getbyorderid?order_id=...
+
+HTTP Method: GET
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/carts/getbyorderid?order_id=9
+```
+
+Response Format: JSON
+
+```json
+
+[
+  {
+    "cart_id": 1,
+    "item_id": 1,
+    "order_id": 9,
+    "quantity": 1
+  },
+  {
+    "cart_id": 3,
+    "item_id": 5,
+    "order_id": 9,
+    "quantity": 3
+  },
+  {
+    "cart_id": 4,
+    "item_id": 5,
+    "order_id": 9,
+    "quantity": 3
+  }
+]
+
+```
