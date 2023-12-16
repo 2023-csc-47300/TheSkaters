@@ -6,7 +6,7 @@ const LogIn = () => {
 
     const handleGitHubLogin = async () => {
         // try {
-        //   const response = await loginAPI.get('http://http://localhost:8080/users/github');
+        //   const response = await usersAPI.get('http://http://localhost:8080/users/github');
         //   // Handle the response, possibly redirect the user or display data
         //   console.log(response.data);
         // } catch (error) {
