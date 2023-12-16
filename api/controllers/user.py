@@ -2,7 +2,7 @@ import datetime
 
 import flask
 import flask_login
-from flask import redirect, url_for
+from flask import redirect, url_for, session
 
 from database import conn
 from models.user import User
@@ -20,6 +20,19 @@ def check_user_exists(email):
         '''
         cursor.execute(select_query, (email,))
         exists = cursor.fetchone()[0]
+
+        cursor.close()
+        return exists
+
+
+def check_github_exists(nickname):
+        cursor = conn.cursor()
+
+        select_query = '''
+        SELECT * FROM users WHERE github = %s
+        '''
+        cursor.execute(select_query, (nickname,))
+        exists = cursor.fetchone()
 
         cursor.close()
         return exists
@@ -138,7 +151,6 @@ def confirm_login():
     user = flask_login.current_user
     if not user.is_authenticated:
         flask.abort(401)
-
     return flask.jsonify(
         {
             "first_name": user.first_name,
@@ -182,10 +194,12 @@ def login():
     )
 
 
-@user_blueprint.route("/logout", methods=["POST"])
-@flask_login.login_required
+@user_blueprint.route("/logout", methods=["GET"])
 def logout():
     flask_login.logout_user()
+
+    session.pop('github_oauth_token', None)
+    session.pop('github_logged_in', None)
     return {}
 
 
@@ -206,8 +220,7 @@ def github_login():
         user_email = account_info_json.get('email')
 
         user_exists = None
-        if user_email: 
-            user_exists = check_user_exists(user_email)
+        user_exists = check_github_exists(account_info_json.get('login'))
 
         if not user_exists:
             # Add the user to the database
@@ -223,7 +236,8 @@ def github_login():
             print("User added to the database")
         else:
             print("User already exists in the database")
-            user = user_exists
+            user = User(first_name=user_exists[1], last_name=user_exists[2], email=user_exists[3], password=user_exists[4], github=user_exists[5])
+        
         
         flask_login.login_user(user)
         return flask.jsonify(
