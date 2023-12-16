@@ -8,6 +8,8 @@ import database
 import login_manager
 from controllers.product import product_blueprint
 from controllers.user import user_blueprint
+from controllers.order import order_blueprint
+from controllers.shopping_cart import cart_blueprint
 
 from flask_cors import CORS
 
@@ -120,6 +122,8 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     # Load the "product" routes onto the Flask Application. 
     app.register_blueprint(product_blueprint, url_prefix="/products")
     app.register_blueprint(user_blueprint, url_prefix="/users")
+    app.register_blueprint(order_blueprint, url_prefix="/orders")
+    app.register_blueprint(cart_blueprint, url_prefix="/carts")
     app.register_blueprint(github_blueprint, url_prefix="/github_login")
     # app.register_blueprint(github_auth_blueprint, url_prefix="/auth/github")
 
