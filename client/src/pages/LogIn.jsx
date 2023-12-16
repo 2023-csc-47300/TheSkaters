@@ -3,15 +3,23 @@ import '../styles/Pages.css';
 import Skate from '../components/Skate';
 
 const LogIn = () => {
+
+    const handleGitHubLogin = async () => {
+        // try {
+        //   const response = await loginAPI.get('http://http://localhost:8080/users/github');
+        //   // Handle the response, possibly redirect the user or display data
+        //   console.log(response.data);
+        // } catch (error) {
+        //   // Handle errors
+        //   console.error(error);
+        // }
+    };
     
     return (
-        <div className="login-main">
-            <div className="login-text">
-                <h1>Welcome to Log-In</h1>
-                <p>Would you rather to sign in Locally or through Google?</p>
-            </div>
-        </div>  
-    )
-}
+        <div>
+          <button onClick={handleGitHubLogin}>Login with GitHub</button>
+        </div>
+      );
+};
 
 export default LogIn

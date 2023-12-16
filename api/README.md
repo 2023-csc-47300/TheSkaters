@@ -71,6 +71,34 @@ Response Format: JSON
 
 ### Users
 
+#### Login with gitHub
+
+Endpoint: http://127.0.0.1:8080/users/github
+
+Description: login or sign up with github
+
+HTTP Method: GET
+
+Example:
+
+```bash
+curl http://127.0.0.1:8080/users/github
+```
+
+Response Format: JSON
+
+```json
+
+{
+  "email": null,
+  "first_name": null,
+  "github": "georgyccny",
+  "last_name": null,
+  "user_id": 5
+}
+
+```
+
 #### Sign Up
 
 Endpoint: http://127.0.0.1:8080/users/signup
