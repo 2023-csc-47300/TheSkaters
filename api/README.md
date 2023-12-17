@@ -165,7 +165,7 @@ Endpoint: http://127.0.0.1:8080/users/login
 
 Description: login existing user
 
-HTTP Method: Get
+HTTP Method: GET
 
 Example:
 
@@ -191,7 +191,7 @@ Endpoint: http://127.0.0.1:8080/users/logout
 
 Description: logout
 
-HTTP Method: POST
+HTTP Method: GET
 
 Example:
 
