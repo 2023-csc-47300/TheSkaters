@@ -236,7 +236,7 @@ def github_login():
             print("User added to the database")
         else:
             print("User already exists in the database")
-            user = User(first_name=user_exists[1], last_name=user_exists[2], email=user_exists[3], password=user_exists[4], github=user_exists[5])
+            user = User(first_name=user_exists[1], last_name=user_exists[2], email=user_exists[3], password=user_exists[4], github=user_exists[5], user_id=user_exists[0])
         
         
         flask_login.login_user(user)
