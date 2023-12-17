@@ -4,17 +4,20 @@ import '../styles/Navbar.css'
 import Cart from './Cart';
 import UserAPI from '../services/UserAPI';
 
-const Navbar = ({ cartItems, githubUser }) => {
+const Navbar = ({ cartItems, githubUser, setGithubUser }) => {
+    // Check if githubUser exists or is not in an error state (Unauthorized)
+    const isLoggedIn = githubUser && !githubUser.error;
+
     const handleGitHubLogout = async () => {
         try {
             const response = await UserAPI.logoutGithub();
-            // Handle the response, possibly redirect the user or display data
-            // console.log(response);
-            window.location.href = "/";
+            window.location.href = "/logIn";
         } catch (error) {
-            console.error(error);
+            console.error("Error during logout:", error);
         }
     };
+
+    console.log(githubUser)
 
     return (
         <header className='navBar'>
@@ -30,11 +33,18 @@ const Navbar = ({ cartItems, githubUser }) => {
                     <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
                     <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
                     <Cart cartItems={cartItems} />
-                    {
+                    {/* {
                         githubUser ?
                             <button className='logInBtn' onClick={handleGitHubLogout}>{githubUser.github}</button>
                             : <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
-                    }
+                    } */}
+                    {!isLoggedIn ? (
+                        <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
+                    ) : (
+                        <button className='logInBtn' onClick={handleGitHubLogout}>
+                            {githubUser.github}
+                        </button>
+                    )}
                 </div>
             </div>
         </header>

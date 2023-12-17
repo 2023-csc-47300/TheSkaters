@@ -19,6 +19,7 @@ const Skates = ({ skates }) => {
             setShowQuad(false);
         }
     };
+    
 
     const filteredSkates = skates.filter((skate) => {
         if (showInline) {
