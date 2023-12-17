@@ -53,12 +53,12 @@ def drop_table():
 
 
 class User(UserMixin):
-    def __init__(self, first_name='', last_name='', email='', password='', github=''):
+    def __init__(self, first_name='', last_name='', email='', password='', github='', user_id = None):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
         self.password = password
-        self.user_id = None
+        self.user_id = user_id
         self.github = github
     
 
