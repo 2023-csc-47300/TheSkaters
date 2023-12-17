@@ -2,16 +2,18 @@ import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 import Cart from './Cart';
+import UserAPI from '../services/UserAPI';
 
 const Navbar = ({ cartItems, githubUser }) => {
     const handleGitHubLogout = async () => {
-        // try {
-        //     const response = await UserAPI.loginViaGithub();
-        //     // Handle the response, possibly redirect the user or display data
-        //     console.log(response);
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const response = await UserAPI.logoutGithub();
+            // Handle the response, possibly redirect the user or display data
+            // console.log(response);
+            window.location.href = "/";
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

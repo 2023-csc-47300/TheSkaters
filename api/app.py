@@ -1,5 +1,6 @@
 import os
 import typing
+from dotenv import load_dotenv
 
 import flask
 
@@ -84,7 +85,8 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     """
     A factory function designed to create a Flask Application.
     """
-
+    load_dotenv()
+    
     # Initialize the Flask Application.
     app = flask.Flask(__name__)
     CORS(app, origins='*', supports_credentials=True)
