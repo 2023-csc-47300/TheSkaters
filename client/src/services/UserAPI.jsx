@@ -67,7 +67,23 @@ const UserAPI = {
             console.log('Error in logoutGithub', error);
             throw error;
         }
-    }
+    },
+    loginViaLocal: async (formData, body) => {
+        try {
+            const response = await fetch('http://127.0.0.1:8080/users/login', {
+                method: 'GET',
+                credentials: 'include', // Include credentials such as cookies for cross-origin requests
+                headers: {
+                    'Content-Type': 'application/json', // Set the content type to JSON
+                },
+                body: JSON.stringify(body), // Convert body object to JSON
+            });
+
+        } catch (error) {
+            console.log('Error in loginViaLocal', error);
+            throw error;
+        }
+    },
 
 
 }
