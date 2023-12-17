@@ -19,14 +19,24 @@ const App = () => {
   const [parts, setParts] = useState([]);
   const [gear, setGear] = useState([]);
   const [cartItems, setCartItems] = useState(null);
-  const [githubUser, setGithubUser] = useState();
+  const [githubUser, setGithubUser] = useState(null);
 
   useEffect(() => {
     const getGithubUser = async () => {
-      const response = await UserAPI.loggedInGithub();
-      setGithubUser(response)
-      console.log(response)
-    }
+      try {
+        const response = await UserAPI.loggedInGithub();
+        setGithubUser(response);
+        console.log(response);
+      } catch (error) {
+        console.log('Error in getGithubUser', error);
+        if (error.message === 'Unauthorized') {
+          // Redirect unauthorized users to the login page
+          setGithubUser(null);
+          window.location.href = '/logIn';
+          return;
+        }
+      }
+    };
 
     const fetchProducts = async () => {
       const productsData = await ProductAPI.getProducts();
@@ -80,7 +90,7 @@ const App = () => {
     },
     {
       path: "/myCart",
-      element: githubUser ? <MyCart /> : <LogIn />
+      element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
     },
     {
       path: "/myCart/checkOut",
@@ -93,10 +103,13 @@ const App = () => {
 
   ]);
 
+  // Debugging log to check the value of githubUser
+  console.log("githubUser:", githubUser);
+
   return (
     <div className="App">
 
-      <Navbar cartItems={cartItems} githubUser={githubUser}/>
+      <Navbar cartItems={cartItems} githubUser={githubUser} setGithubUser={setGithubUser} />
 
       {element}
 
