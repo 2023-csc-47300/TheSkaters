@@ -41,6 +41,7 @@ const UserAPI = {
         }
     },
 
+
     loginLocally: async (email, password) => {
         try {
             const url = `http://localhost:8080/users/loginlocal?email=${(email)}&password=${(password)}`;
