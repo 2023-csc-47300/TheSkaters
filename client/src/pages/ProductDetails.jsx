@@ -29,7 +29,8 @@ const ProductDetails = ({ addToCart, githubUser }) => {
             const order_id = cur_order.order_id
             
             const cur_cart = await CartAPI.addItemToCart(order_id, product.product_id, 1);
-            console.log(cur_cart)
+            console.log("Current cart: ",cur_cart)
+            console.log("Current order: ", cur_order)
 
         } else {
             window.location.href = "/logIn";

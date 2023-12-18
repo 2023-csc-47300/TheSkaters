@@ -13,12 +13,7 @@ const LocalLogIn = () => {
         try {
             const response = await UserAPI.loginLocally(email, password); // Adjust with your local login API
             // Handle the response, possibly redirect the user or display data
-            console.log(response);
-
-            console.log(JSON.stringify(response));
             const jString = JSON.stringify(response);
-
-            console.log(response.email);
 
             if (response.email === undefined) {
                 // Then response is not a correct account
@@ -34,7 +29,6 @@ const LocalLogIn = () => {
             else {
                 // All good
                 setLocalMess(``);
-                console.log(`Success`);
                 window.location.href = '/';
                 return;
             }

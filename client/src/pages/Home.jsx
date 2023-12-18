@@ -8,7 +8,6 @@ const Home = (props) => {
     return (
         <div className="Home">
             <main>
-
                 <h1 className="welcome-text">Welcome to The Skaters Official Website</h1>
 
                 <div className="container text-center ">
@@ -16,8 +15,8 @@ const Home = (props) => {
 
                     <div className="row">
                         <div className="col">
-                            <div class="card" style={{ width: 18 + 'rem' }}>
-                                <img src="https://www.thisskatelife.com/wp-content/uploads/2022/08/the-parts-of-a-roller-skate-diagram-1024x1024.jpg" class="card-img-top" alt="..." />
+                            <div className="card" style={{ width: 18 + 'rem' }}>
+                                <img src="https://www.thisskatelife.com/wp-content/uploads/2022/08/the-parts-of-a-roller-skate-diagram-1024x1024.jpg" className="card-img-top" alt="..." />
                                 <div className="card-body">
                                     <Link to="/parts"><button className='btn btn-primary'>Buy Parts?</button></Link>
                                 </div>

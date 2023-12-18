@@ -1,12 +1,15 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import '../styles/Skates.css'
-import { Link } from 'react-router-dom'
-
+import '../styles/MyCart.css'
 import OrderAPI from "../services/OrderAPI";
 import CartAPI from "../services/CartAPI";
+import ProductAPI from '../services/ProductAPI';
+import CartList from '../components/CartList';
+import CartTotalPriceCheckout from '../components/CartTotalPriceCheckout'
 
 const MyCart = ({ githubUser }) => {
+    const [orderData, setOrderData] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         if (githubUser && !githubUser.error) {
@@ -15,18 +18,43 @@ const MyCart = ({ githubUser }) => {
                 if (!cur_order.order_id) {
                     cur_order = await OrderAPI.startNewOrder(githubUser.user_id);
                 }
-                const orderData = await CartAPI.getOrderData(cur_order.order_id);
-                console.log(orderData)
+                const response = await CartAPI.getOrderData(cur_order.order_id);
+                setOrderData(response);
+                console.log("Oder data: ", response)
             }
             getOrder();
         }
     }, []);
 
-    return (
-        <div className="MyCart">
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const productsData = await Promise.all(
+                    orderData.map(async (orderItem) => {
+                        const product = await ProductAPI.getProductById(orderItem.item_id);
+                        return { ...product, quantity: orderItem.quantity };
+                    })
+                );
+                setProducts(productsData);
+                console.log('Products data from order: ', productsData);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
 
-            <h1>Welcome to Your Cart</h1>
-            <Link to="/myCart/checkOut"><button className='addBtn'>Check Out</button></Link>
+        if (orderData.length > 0) {
+            fetchProducts();
+        }
+    }, [orderData]); // Run when orderData changes
+
+    return (
+        <div className="MyCart" style={{ marginTop: '2%' }}>
+                    <CartList products={products} />
+                <div className="col-md-4">
+                    <div className="text-end">
+                        <CartTotalPriceCheckout products={products}/>
+                    </div>
+                </div>
         </div>
     )
 }
