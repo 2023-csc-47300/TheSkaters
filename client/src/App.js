@@ -13,6 +13,7 @@ import ProductAPI from './services/ProductAPI';
 import Navbar from './components/Navbar';
 import ProductDetails from './pages/ProductDetails';
 import UserAPI from './services/UserAPI';
+import SuccessStripe from './pages/SuccessStripe';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -103,6 +104,10 @@ const App = () => {
     {
       path: "/signUp",
       element: <SignUp />
+    },
+    {
+      path: "/success",
+      element: <SuccessStripe />
     }
 
   ]);
