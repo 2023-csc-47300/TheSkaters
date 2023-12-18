@@ -79,24 +79,24 @@ const App = () => {
     },
     {
       path: "/skates/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} />
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
     },
     {
       path: "/parts/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} />
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
     },
     {
       path: "/gear/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} />
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
     },
     {
       path: "/myCart",
       // element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
-      element: <MyCart />
+      element: <MyCart githubUser={githubUser}/>
     },
     {
       path: "/myCart/checkOut",
-      element: <CheckOut />
+      element: <CheckOut githubUser={githubUser}/>
     },
     {
       path: "/logIn",

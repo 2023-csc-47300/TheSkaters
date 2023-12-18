@@ -1,8 +1,26 @@
 import React from 'react'
+import { useEffect, useState } from "react";
 import '../styles/Skates.css'
 import { Link } from 'react-router-dom'
 
-const MyCart = (props) => {
+import OrderAPI from "../services/OrderAPI";
+import CartAPI from "../services/CartAPI";
+
+const MyCart = ({ githubUser }) => {
+
+    useEffect(() => {
+        if (githubUser && !githubUser.error) {
+            const getOrder = async () => {
+                var cur_order = await OrderAPI.getCurrentOrder(githubUser.user_id);
+                if (!cur_order.order_id) {
+                    cur_order = await OrderAPI.startNewOrder(githubUser.user_id);
+                }
+                const orderData = await CartAPI.getOrderData(cur_order.order_id);
+                console.log(orderData)
+            }
+            getOrder();
+        }
+    }, []);
 
     return (
         <div className="MyCart">
