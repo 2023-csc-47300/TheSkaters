@@ -29,7 +29,21 @@ const OrderAPI = {
             throw error;
         }
     },
+
+    checkoutOrder: async (order_id) => {
+        const url = `http://localhost:8080/orders/checkout?order_id=${(order_id)}`; // Replace with your desired URL
+        const newWindow = window.open(url, '_blank');
+        if (newWindow) {
+            // If the window was successfully opened, redirect
+            newWindow.location.href = url;
+        } else {
+            // Handle if the window was blocked by the browser's pop-up blocker
+            console.error('The pop-up window was blocked by the browser.');
+            // You might want to provide a message to the user or perform an alternative action.
+        }
+    },
     
+
 
 }
 
