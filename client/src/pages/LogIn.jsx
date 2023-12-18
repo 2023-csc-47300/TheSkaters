@@ -6,6 +6,7 @@ const LogIn = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [localMess, setMessage] = useState('');
 
     const handleGitHubLogin = async () => {
         try {
@@ -24,16 +25,48 @@ const LogIn = () => {
           const response = await UserAPI.loginLocally(email, password); // Adjust with your local login API
           // Handle the response, possibly redirect the user or display data
           console.log(response);
-          window.location.href = '/';
+
+          console.log(JSON.stringify(response));
+          const jString = JSON.stringify(response);
+
+          console.log(response.email);
+          
+          if(response.email === undefined){
+            // Then response is not a correct account
+            if(response.error.code == 401){
+              setMessage(`Failed. Error with Code ${response.error.code}.`);
+              return;
+            }
+            else {
+              setMessage(`Error Incorrect Credentials`);
+              return;
+            }
+          }
+          else {
+            // All good
+            setMessage(``);
+            console.log(`Success`);
+            window.location.href = '/';
+            return;
+          }
+
+          return;
       } catch (error) {
           console.error(error);
+          setMessage(`Failed. Error with Code ${error.code}.`);
+          return;
       }
+
+      
+    
+
+      
     };
 
     return (
-        <div>
-          <button onClick={handleGitHubLogin} className='headerBtn'>🔒 Login via GitHub</button>
+        <div className="login-main">
           
+          <div className="local-login-form">
           <form onSubmit={handleLocalLogin}>
                 <h2>Local Login</h2>
                 <div>
@@ -47,6 +80,11 @@ const LogIn = () => {
                 <button type="submit">Login</button>
           </form>
 
+          <h2 className="local-login-mess">{localMess}</h2>
+          </div>
+
+          <button onClick={handleGitHubLogin} className='login-github-BTN'>🔒 Login via GitHub</button>
+          
         </div>
       );
 };
