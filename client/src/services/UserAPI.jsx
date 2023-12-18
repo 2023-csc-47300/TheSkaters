@@ -1,42 +1,14 @@
 const UserAPI = {
-    // loginViaGithub: async () => {
-    //     try {
-    //         const response = await fetch('http://localhost:8080/users/github', {
-    //             method: 'GET',
-    //             credentials: 'include', // Include credentials such as cookies for cross-origin requests
-    //             mode: 'no-cors',
-    //         });
-    //         console.log(response)
-    //         const userInfo = await response.json();
-    //         return userInfo;
-    //     } catch (error) {
-    //         console.log('Error in loginViaGithub', error);
-    //         throw error;
-    //     }
-    // },
     loginViaGithub: async () => {
-        try {
-            const response = await fetch('http://localhost:8080/users/github', {
-                method: 'GET',
-                credentials: 'include', // Include credentials such as cookies for cross-origin requests
-                redirect: 'manual' // Prevent the browser from automatically following redirects
-            });
-    
-            // Check if the response is a redirect
-            if (response.status === 302) {
-                // Get the redirect URL from the 'Location' header
-                const redirectUrl = response.headers.get('Location');
-    
-                // Redirect the user manually using window.location
-                // window.location.href = redirectUrl;
-            } else {
-                // Handle other responses if needed
-                const userInfo = await response;
-                return userInfo;
-            }
-        } catch (error) {
-            console.log('Error in loginViaGithub', error);
-            throw error;
+        const url = 'http://localhost:8080/users/github'; // Replace with your desired URL
+        const newWindow = window.open(url, '_blank');
+        if (newWindow) {
+            // If the window was successfully opened, redirect
+            newWindow.location.href = url;
+        } else {
+            // Handle if the window was blocked by the browser's pop-up blocker
+            console.error('The pop-up window was blocked by the browser.');
+            // You might want to provide a message to the user or perform an alternative action.
         }
     },
 
@@ -68,23 +40,38 @@ const UserAPI = {
             throw error;
         }
     },
-    loginViaLocal: async (formData, body) => {
+
+
+    loginLocally: async (email, password) => {
         try {
-            const response = await fetch('http://127.0.0.1:8080/users/login', {
+            const url = `http://localhost:8080/users/loginlocal?email=${(email)}&password=${(password)}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 credentials: 'include', // Include credentials such as cookies for cross-origin requests
-                headers: {
-                    'Content-Type': 'application/json', // Set the content type to JSON
-                },
-                body: JSON.stringify(body), // Convert body object to JSON
             });
-
+            const userInfo = await response.json();
+            return userInfo;
         } catch (error) {
-            console.log('Error in loginViaLocal', error);
+            console.log('Error in loginLocally', error);
             throw error;
         }
     },
+    
 
+    signUpLocally: async (first_name, last_name, email, password) => {
+        try {
+            const url = `http://localhost:8080/users/signup?first_name=${(first_name)}&last_name=${(last_name)}&email=${(email)}&password=${(password)}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include', // Include credentials such as cookies for cross-origin requests
+            });
+            const userInfo = await response.json();
+            return userInfo;
+        } catch (error) {
+            console.log('Error in loginLocally', error);
+            throw error;
+        }
+    },
 
 }
 

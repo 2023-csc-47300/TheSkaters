@@ -6,6 +6,7 @@ import MyCart from './pages/MyCart';
 import CheckOut from './pages/CheckOut';
 import Skates from './pages/Skates';
 import LogIn from './pages/LogIn';
+import SignUp from './pages/SignUp';
 import Parts from './pages/Parts';
 import Gear from './pages/Gear';
 import ProductAPI from './services/ProductAPI';
@@ -100,6 +101,10 @@ const App = () => {
     {
       path: "/logIn",
       element: <LogIn />
+    },
+    {
+      path: "/signUp",
+      element: <SignUp />
     }
 
   ]);

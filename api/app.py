@@ -89,23 +89,12 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     
     # Initialize the Flask Application.
     app = flask.Flask(__name__)
-    CORS(app, origins='http://localhost:3000', supports_credentials=True)
+    CORS(app, supports_credentials=True)
 
-    github_blueprint = make_github_blueprint(client_id=os.environ.get("GITHUB_CLIENT_ID"), client_secret=os.environ.get("GITHUB_CLIENT_SECRET"))
+    github_blueprint = make_github_blueprint(client_id=os.environ.get("GITHUB_CLIENT_ID"), 
+                                                client_secret=os.environ.get("GITHUB_CLIENT_SECRET"), 
+                                                redirect_to="users.github_login")
 
-
-    # @app.route('/github')
-    # def github_login():
-    #     if not github.authorized:
-    #         return redirect(url_for('github.login'))
-        
-    #     account_info = github.get('/user')
-
-    #     if account_info.ok:
-    #         account_info_json = account_info.json()
-    #         return '<h1>Your github name is {}</h1>'.format(account_info_json['login'])
-        
-    #     return '<h1>Request failed!</h1>'
 
     # Load the configuration pertaining to the environment you're in
     # e.g., development, production, or testing.
@@ -127,7 +116,6 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     app.register_blueprint(order_blueprint, url_prefix="/orders")
     app.register_blueprint(cart_blueprint, url_prefix="/carts")
     app.register_blueprint(github_blueprint, url_prefix="/github_login")
-    # app.register_blueprint(github_auth_blueprint, url_prefix="/auth/github")
 
     # Register an error handler for 400 (Bad Request). The Flask Application
     # will call the error handler when the application returns a 400

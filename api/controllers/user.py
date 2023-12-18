@@ -1,4 +1,5 @@
 import datetime
+import os
 
 import flask
 import flask_login
@@ -8,6 +9,7 @@ from database import conn
 from models.user import User
 import login_manager
 from flask_dance.contrib.github import github
+from flask_cors import cross_origin
 
 
 user_blueprint = flask.Blueprint("users", __name__)
@@ -104,30 +106,34 @@ def get_users():
         return f"Error fetching users: {e}", 500
 
 
-@user_blueprint.route("/signup", methods=["POST"])
+@user_blueprint.route("/signup", methods=["GET"])
 def signup():
     # Parse the JSON data in the request's body.
-    user_data = flask.request.get_json()
+    first_name = flask.request.args.get("first_name")
+    last_name = flask.request.args.get("last_name")
+    email = flask.request.args.get("email")
+    password = flask.request.args.get("password")
 
     # Validate that the client provided all required fields.
-    required_fields = ["first_name", "last_name", "email", "password"]
-    for field in required_fields:
+    required_fields = [first_name, last_name, email, password]
+    required_fields_name = ["first_name", "last_name", "email", "password"]
+    for field in range(len(required_fields)):
         # If a required field is missing, return a 400 (Bad Request) HTTP
         # Status Code to clients, signifying that we received a bad request.
-        if field not in user_data:
-            flask.abort(400, description=f"{field} cannot be blank.")
+        if not required_fields[field]:
+            flask.abort(400, description=f"{required_fields_name[field]} cannot be blank.")
 
-    user = check_user_exists(user_data["email"])
+    user = check_user_exists(email)
     if user:
         flask.abort(400, description=f"User already exists.")
 
     # Initialize and populate a User object with the data submitted by the client.
     user = User()
-    user.first_name = user_data["first_name"]
-    user.last_name = user_data["last_name"]
-    user.email = user_data["email"]
-    user.password = user_data["password"]
-    user.github = ""
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+    user.password = password
+    user.github = None
 
     # Add the User to the database and commit the transaction.
     user.add_user_to_db()
@@ -161,20 +167,21 @@ def confirm_login():
     )
 
 
-@user_blueprint.route("/login", methods=["POST"])
+@user_blueprint.route("/loginlocal", methods=["GET"])
 def login():
     # Parse the JSON data in the request's body.
-    login_data = flask.request.get_json()
-
+    email = flask.request.args.get("email")
+    password = flask.request.args.get("password")
     # Validate that the client provided all required fields.
-    required_fields = ["email", "password"]
-    for field in required_fields:
+    required_fields = [email, password]
+    required_fields_name = ["email", "password"]
+    for field in range(len(required_fields)):
         # If a required field is missing, return a 400 (Bad Request) HTTP
         # Status Code to clients, signifying that we received a bad request.
-        if field not in login_data:
-            flask.abort(400, description=f"{field} cannot be blank.")
+        if not required_fields[field]:
+            flask.abort(400, description=f"{required_fields_name[field]} cannot be blank.")
 
-    user = check_user_credentials(login_data["email"], login_data["password"])
+    user = check_user_credentials(email, password)
     if not user:
         flask.abort(401, description=f"Incorrect email or password.")
     # is_correct_password = pbkdf2_sha256.verify(login_data["password"], user.password)
@@ -209,9 +216,10 @@ def login_check_user(user_id):
 
 
 @user_blueprint.route('/github')
+@cross_origin(supports_credentials=True)
 def github_login():
     if not github.authorized:
-        return redirect(url_for('github.login'))
+        return redirect(url_for('github.login', _external=True))
     
     account_info = github.get('/user')
 
@@ -240,14 +248,15 @@ def github_login():
         
         
         flask_login.login_user(user)
-        return flask.jsonify(
-            {
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "email": user.email,
-                "user_id": user.user_id,
-                "github": user.github
-            }
-        )
+        # return flask.jsonify(
+        #     {
+        #         "first_name": user.first_name,
+        #         "last_name": user.last_name,
+        #         "email": user.email,
+        #         "user_id": user.user_id,
+        #         "github": user.github
+        #     }
+        # )
+        return redirect('http://localhost:3000/')
 
     return 'Request failed!'

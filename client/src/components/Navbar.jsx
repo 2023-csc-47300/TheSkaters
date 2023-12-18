@@ -42,7 +42,7 @@ const Navbar = ({ cartItcartItemsCountems, githubUser }) => {
                         <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
                     ) : (
                         <button className='logInBtn' onClick={handleGitHubLogout}>
-                            {githubUser.github}
+                            {githubUser.github === null ? `${githubUser.first_name} ${githubUser.last_name}` : githubUser.github}
                         </button>
                     )}
                 </div>
