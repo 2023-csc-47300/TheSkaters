@@ -1,10 +1,10 @@
 import logo from '../assets/logo.png'
 import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
-import Cart from './Cart';
+import DisplayCartCount from './DisplayCartCount';
 import UserAPI from '../services/UserAPI';
 
-const Navbar = ({ cartItems, githubUser, setGithubUser }) => {
+const Navbar = ({ cartItemsCount, githubUser }) => {
     // Check if githubUser exists or is not in an error state (Unauthorized)
     const isLoggedIn = githubUser && !githubUser.error;
 
@@ -32,12 +32,7 @@ const Navbar = ({ cartItems, githubUser, setGithubUser }) => {
                     <Link to="/parts"><button className='partsBtn'>Parts</button></Link>
                     <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
                     <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
-                    <Cart cartItems={cartItems} />
-                    {/* {
-                        githubUser ?
-                            <button className='logInBtn' onClick={handleGitHubLogout}>{githubUser.github}</button>
-                            : <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
-                    } */}
+                    <DisplayCartCount cartItemsCount={cartItemsCount} />
                     {!isLoggedIn ? (
                         <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
                     ) : (

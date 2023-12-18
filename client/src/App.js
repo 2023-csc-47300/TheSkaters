@@ -19,7 +19,7 @@ const App = () => {
   const [skates, setSkates] = useState([]);
   const [parts, setParts] = useState([]);
   const [gear, setGear] = useState([]);
-  const [cartItems, setCartItems] = useState(null);
+  const [cartItemsCount, setCartItemsCount] = useState(null);
   const [githubUser, setGithubUser] = useState(null);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const App = () => {
   }, [])
 
   const addToCart = () => {
-    setCartItems(prevCount => prevCount + 1); // Increase the count of items in the cart
+    setCartItemsCount(prevCount => prevCount + 1); // Increase the count of items in the cart
   };
 
   let element = useRoutes([
@@ -91,8 +91,7 @@ const App = () => {
     },
     {
       path: "/myCart",
-      // element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
-      element: <MyCart />
+      element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
     },
     {
       path: "/myCart/checkOut",
@@ -115,7 +114,7 @@ const App = () => {
   return (
     <div className="App">
 
-      <Navbar cartItems={cartItems} githubUser={githubUser} setGithubUser={setGithubUser} />
+      <Navbar cartItemsCount={cartItemsCount} githubUser={githubUser} />
 
       {element}
 
