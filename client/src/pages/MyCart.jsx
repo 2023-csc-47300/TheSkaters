@@ -24,7 +24,7 @@ const MyCart = ({ githubUser }) => {
             }
             getOrder();
         }
-    }, []);
+    }, [githubUser]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -52,7 +52,7 @@ const MyCart = ({ githubUser }) => {
                     <CartList products={products} />
                 <div className="col-md-4">
                     <div className="text-end">
-                        <CartTotalPriceCheckout products={products}/>
+                        <CartTotalPriceCheckout products={products} githubUser={githubUser}/>
                     </div>
                 </div>
         </div>
