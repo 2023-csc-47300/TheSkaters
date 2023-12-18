@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ProductAPI from "../services/ProductAPI";
+import OrderAPI from "../services/OrderAPI";
+import CartAPI from "../services/CartAPI";
 import '../styles/ProductDetails.css'
 import ProductDescription from "../components/ProductDescription";
 import ProductSize from "../components/ProductSize";
 
-const ProductDetails = ({ addToCart }) => {
+const ProductDetails = ({ addToCart, githubUser }) => {
     const { id } = useParams();
     const [product, setProduct] = useState({ product_id: 0, name: '', type: '', price: '', model: '', size: '', color: '', description: '', image_url: '' });
 
@@ -17,8 +19,21 @@ const ProductDetails = ({ addToCart }) => {
         fetchProductById();
     }, [id]);
 
-    const handleAddToCart = () => {
-        addToCart();
+    const handleAddToCart = async (e) => {
+        if (githubUser && !githubUser.error) {
+            addToCart();
+            var cur_order = await OrderAPI.getCurrentOrder(githubUser.user_id);
+            if (!cur_order.order_id) {
+                cur_order = await OrderAPI.startNewOrder(githubUser.user_id);
+            }
+            const order_id = cur_order.order_id
+            
+            const cur_cart = await CartAPI.addItemToCart(order_id, product.product_id, 1);
+            console.log(cur_cart)
+
+        } else {
+            window.location.href = "/logIn";
+        }
     };
 
     return (

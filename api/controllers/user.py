@@ -163,6 +163,7 @@ def confirm_login():
             "last_name": user.last_name,
             "email": user.email,
             "github": user.github,
+            "user_id": user.user_id,
         }
     )
 
