@@ -19,7 +19,7 @@ const App = () => {
   const [skates, setSkates] = useState([]);
   const [parts, setParts] = useState([]);
   const [gear, setGear] = useState([]);
-  const [cartItemsCount, setCartItemsCount] = useState(null);
+  const [cartItemsCount, setCartItemsCount] = useState(0);
   const [githubUser, setGithubUser] = useState(null);
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const App = () => {
       try {
         const response = await UserAPI.loggedInGithub();
         setGithubUser(response);
-        console.log(response);
       } catch (error) {
         console.log('Error in getGithubUser', error);
         if (error.message === 'Unauthorized') {
@@ -57,7 +56,7 @@ const App = () => {
   }, [])
 
   const addToCart = () => {
-    setCartItemsCount(prevCount => prevCount + 1); // Increase the count of items in the cart
+    setCartItemsCount(prevCount => prevCount + 1); 
   };
 
   let element = useRoutes([
@@ -79,23 +78,23 @@ const App = () => {
     },
     {
       path: "/skates/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser} />
     },
     {
       path: "/parts/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser} />
     },
     {
       path: "/gear/products/getbyid/:id",
-      element: <ProductDetails addToCart={addToCart} githubUser={githubUser}/>
+      element: <ProductDetails addToCart={addToCart} githubUser={githubUser} />
     },
     {
       path: "/myCart",
-      element: <MyCart githubUser={githubUser}/>
+      element: githubUser && !githubUser.error ? <MyCart githubUser={githubUser} /> : <LogIn />
     },
     {
       path: "/myCart/checkOut",
-      element: <CheckOut githubUser={githubUser}/>
+      element: <CheckOut githubUser={githubUser} />
     },
     {
       path: "/logIn",
@@ -107,9 +106,6 @@ const App = () => {
     }
 
   ]);
-
-  // Debugging log to check the value of githubUser
-  console.log("githubUser:", githubUser);
 
   return (
     <div className="App">

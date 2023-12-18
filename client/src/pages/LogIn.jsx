@@ -8,7 +8,6 @@ const LogIn = () => {
     try {
       const response = await UserAPI.loginViaGithub();
       // Handle the response, possibly redirect the user or display data
-      console.log(response);
       window.location.href = '/';
     } catch (error) {
       console.error(error);

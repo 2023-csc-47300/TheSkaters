@@ -15,7 +15,6 @@ const SignUp = () => {
             const response = await UserAPI.signUpLocally(firstName, lastName, email, password); // Adjust with your local login API
             // Handle the response, possibly redirect the user or display data
             if (response.error) {
-                console.log(response.error.description);
                 setMessage(response.error.description); // Set the error message to display
                 setTimeout(() => {
                     setMessage(null);

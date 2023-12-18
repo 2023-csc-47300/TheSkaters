@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Navbar.css'
 import DisplayCartCount from './DisplayCartCount';
 import UserAPI from '../services/UserAPI';
+import { useState, useEffect } from 'react';
 
 const Navbar = ({ cartItemsCount, githubUser }) => {
     // Check if githubUser exists or is not in an error state (Unauthorized)
@@ -16,8 +17,6 @@ const Navbar = ({ cartItemsCount, githubUser }) => {
             console.error("Error during logout:", error);
         }
     };
-
-    console.log(githubUser)
 
     return (
         <header className='navBar'>
