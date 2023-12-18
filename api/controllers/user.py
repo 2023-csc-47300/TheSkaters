@@ -109,27 +109,31 @@ def get_users():
 @user_blueprint.route("/signup", methods=["GET"])
 def signup():
     # Parse the JSON data in the request's body.
-    user_data = flask.request.get_json()
+    first_name = flask.request.args.get("first_name")
+    last_name = flask.request.args.get("last_name")
+    email = flask.request.args.get("email")
+    password = flask.request.args.get("password")
 
     # Validate that the client provided all required fields.
-    required_fields = ["first_name", "last_name", "email", "password"]
-    for field in required_fields:
+    required_fields = [first_name, last_name, email, password]
+    required_fields_name = ["first_name", "last_name", "email", "password"]
+    for field in range(len(required_fields)):
         # If a required field is missing, return a 400 (Bad Request) HTTP
         # Status Code to clients, signifying that we received a bad request.
-        if field not in user_data:
-            flask.abort(400, description=f"{field} cannot be blank.")
+        if not required_fields[field]:
+            flask.abort(400, description=f"{required_fields_name[field]} cannot be blank.")
 
-    user = check_user_exists(user_data["email"])
+    user = check_user_exists(email)
     if user:
         flask.abort(400, description=f"User already exists.")
 
     # Initialize and populate a User object with the data submitted by the client.
     user = User()
-    user.first_name = user_data["first_name"]
-    user.last_name = user_data["last_name"]
-    user.email = user_data["email"]
-    user.password = user_data["password"]
-    user.github = ""
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+    user.password = password
+    user.github = None
 
     # Add the User to the database and commit the transaction.
     user.add_user_to_db()
@@ -169,8 +173,13 @@ def login():
     email = flask.request.args.get("email")
     password = flask.request.args.get("password")
     # Validate that the client provided all required fields.
-    if not email or not password:
-        flask.abort(400, description=f"Field cannot be blank.")
+    required_fields = [email, password]
+    required_fields_name = ["email", "password"]
+    for field in range(len(required_fields)):
+        # If a required field is missing, return a 400 (Bad Request) HTTP
+        # Status Code to clients, signifying that we received a bad request.
+        if not required_fields[field]:
+            flask.abort(400, description=f"{required_fields_name[field]} cannot be blank.")
 
     user = check_user_credentials(email, password)
     if not user:

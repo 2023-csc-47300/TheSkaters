@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Pages.css';
 import UserAPI from '../services/UserAPI';
+import { Link } from 'react-router-dom';
 
 const LogIn = () => {
 
@@ -79,6 +80,7 @@ const LogIn = () => {
                 </div>
                 <button type="submit">Login</button>
           </form>
+          <Link to="/signUp"><button className='signUpBtn'>Sign Up</button></Link>
 
           <h2 className="local-login-mess">{localMess}</h2>
           </div>

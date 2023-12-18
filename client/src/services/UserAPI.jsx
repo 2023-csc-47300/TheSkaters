@@ -55,7 +55,23 @@ const UserAPI = {
             console.log('Error in loginLocally', error);
             throw error;
         }
-    },    
+    },
+    
+
+    signUpLocally: async (first_name, last_name, email, password) => {
+        try {
+            const url = `http://localhost:8080/users/signup?first_name=${(first_name)}&last_name=${(last_name)}&email=${(email)}&password=${(password)}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include', // Include credentials such as cookies for cross-origin requests
+            });
+            const userInfo = await response.json();
+            return userInfo;
+        } catch (error) {
+            console.log('Error in loginLocally', error);
+            throw error;
+        }
+    },
 
 }
 
