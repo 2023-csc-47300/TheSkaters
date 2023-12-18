@@ -9,7 +9,7 @@
 
 
 /* Login CSS */
-.login-main {
+/* .login-main {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -39,7 +39,7 @@
     border-bottom: 2px solid black;
     margin-left: 5vw;
     margin-right: 5vw;
-    padding:2.5vw;
+    padding: 2.5vw;
 }
 
 .local-login-mess {
@@ -50,8 +50,16 @@
 .login-github-BTN {
     margin: 25px auto;
     width:10%;
-}
-
-/* .skate-div {
-    margin: 5%;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    color: 373D3F;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    background-color: #97bfd8;
+    transition: all .7s ease;
+    -webkit-transition: all .7s ease;
 } */

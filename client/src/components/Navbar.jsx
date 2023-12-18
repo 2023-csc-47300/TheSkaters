@@ -4,7 +4,7 @@ import '../styles/Navbar.css'
 import DisplayCartCount from './DisplayCartCount';
 import UserAPI from '../services/UserAPI';
 
-const Navbar = ({ cartItcartItemsCountems, githubUser }) => {
+const Navbar = ({ cartItemsCount, githubUser }) => {
     // Check if githubUser exists or is not in an error state (Unauthorized)
     const isLoggedIn = githubUser && !githubUser.error;
 
@@ -33,11 +33,6 @@ const Navbar = ({ cartItcartItemsCountems, githubUser }) => {
                     <Link to="/skates"><button className='skatesBtn'>Skates</button></Link>
                     <Link to="/gear"><button className='gearBtn'>Gear</button></Link>
                     <DisplayCartCount cartItemsCount={cartItemsCount} />
-                    {/* {
-                        githubUser ?
-                            <button className='logInBtn' onClick={handleGitHubLogout}>{githubUser.github}</button>
-                            : <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
-                    } */}
                     {!isLoggedIn ? (
                         <Link to="/logIn"><button className='logInBtn'>Log-In</button></Link>
                     ) : (

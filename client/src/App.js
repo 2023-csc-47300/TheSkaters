@@ -91,8 +91,7 @@ const App = () => {
     },
     {
       path: "/myCart",
-      // element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
-      element: <MyCart />
+      element: githubUser && !githubUser.error ? <MyCart /> : <LogIn />
     },
     {
       path: "/myCart/checkOut",
