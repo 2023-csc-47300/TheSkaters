@@ -1,3 +1,10 @@
+/* Color Palette
+#cbd4ff     (203,212,255)
+#c0c7ff     (192,199,255)
+#aeb8ff     (174,184,255)
+#96a2ff     (150,162,255)
+#8189ff     (129,137,255)
+*/
 
 
 
@@ -7,6 +14,14 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    width: 90vw;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    background-color: #c0c7ff;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-bottom: 10vh;
 }
 
 .login-text {
@@ -16,6 +31,25 @@
     align-content: center;
     flex-wrap: wrap;
     align-items: center;
+}
+
+.local-login-form {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding:2.5vw;
+}
+
+.local-login-mess {
+    color: red;
+    padding: 10px;
+}
+
+.login-github-BTN {
+    margin: 25px auto;
+    width:10%;
 }
 
 /* .skate-div {
