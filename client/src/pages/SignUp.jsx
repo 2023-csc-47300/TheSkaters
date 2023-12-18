@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import UserAPI from '../services/UserAPI';
-import '../styles/Pages.css';
+import '../styles/LogIn.css';
 
 const SignUp = () => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [error, setError] = useState(null);
     const [localMess, setMessage] = useState('');
 
     const handleSignUp = async (e) => {
@@ -37,28 +35,30 @@ const SignUp = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSignUp}>
-                <h2>Sign Up</h2>
-                <h2 className="local-login-mess">{localMess}</h2>
-                <div>
-                    <label>First Name:</label>
-                    <input type="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input type="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                </div>
-                <button type="submit">Sign Up</button>
-          </form>
+        <div className="login-main">
+            <div className='local-login-form'>
+                <form onSubmit={handleSignUp}>
+                    <h2 className="local-login-mess">{localMess}</h2>
+                    <h2>Roll into the Action!</h2>
+                    <div>
+                        <label>First Name:</label>
+                        <input type="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                    </div>
+                    <div>
+                        <label>Last Name:</label>
+                        <input type="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                    </div>
+                    <div>
+                        <label>Email:</label>
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    </div>
+                    <button type="submit" className='signUpBtn'>Sign Up</button>
+                </form>
+            </div>
         </div>
     );
 };
