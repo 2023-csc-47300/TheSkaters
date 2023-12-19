@@ -23,6 +23,10 @@ Run the application using Python3:
 python3 app.py
 ```
 
+### For local deployment
+
+Change all https://the-skaters.netlify.app/ to http://localhost:3000/ in the controllers/
+
 ## API Routes
 
 ### Products
