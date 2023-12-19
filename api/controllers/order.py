@@ -166,7 +166,7 @@ def get_done():
 
         cursor.close()
         print(f"ORDER {order} DONE")
-        return redirect('https://the-skaters.netlify.app/success')
+        return redirect('https://the-skaters.netlify.app/#/success')
         
 
     except Exception as e:
