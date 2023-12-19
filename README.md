@@ -4,13 +4,13 @@ Web and Frontend Development Hub for TheSkaters eCommerce Skates Store
 
 Try it out: https://the-skaters.netlify.app/
 
-## Getting Started
+## Getting Started with:
 
-### Getting Started with Create React App
+### Create React App
 
 See "./client/README.md".
 
-### Getting Started with Create API App
+### API App
 
 See "./api/README.md".
 
@@ -43,4 +43,4 @@ Stripe, GitHub oAuth
 
 ## Misc
 
-Project supporst continuous integration on GitHub for Node.js and Python workflows.
+- Project supporst continuous integration on GitHub for Node.js and Python workflows.
