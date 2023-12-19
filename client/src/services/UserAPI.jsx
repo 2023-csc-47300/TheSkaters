@@ -32,7 +32,7 @@ const UserAPI = {
                 method: 'GET',
                 credentials: 'include', // Include credentials such as cookies for cross-origin requests
             });
-            // window.location.href = "/logIn";
+            // window.location.href = "/#/logIn";
             // const userInfo = await response.json();
             // return userInfo;
         } catch (error) {

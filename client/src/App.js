@@ -33,7 +33,7 @@ const App = () => {
         if (error.message === 'Unauthorized') {
           // Redirect unauthorized users to the login page
           setGithubUser(null);
-          window.location.href = '/logIn';
+          window.location.href = '/#/logIn';
           return;
         }
       }
