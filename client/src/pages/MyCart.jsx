@@ -49,12 +49,12 @@ const MyCart = ({ githubUser }) => {
 
     return (
         <div className="MyCart" style={{ marginTop: '2%' }}>
-                    <CartList products={products} />
-                <div className="col-md-4">
-                    <div className="text-end">
-                        <CartTotalPriceCheckout products={products} githubUser={githubUser}/>
-                    </div>
-                </div>
+            <div className="product-list">
+                <CartList products={products} orderData={orderData}/>
+            </div>
+            <div className="price-checkout">
+                    <CartTotalPriceCheckout products={products} githubUser={githubUser} />
+            </div>
         </div>
     )
 }

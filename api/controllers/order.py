@@ -166,7 +166,7 @@ def get_done():
 
         cursor.close()
         print(f"ORDER {order} DONE")
-        return redirect('http://localhost:3000/')
+        return redirect('http://localhost:3000/success')
         
 
     except Exception as e:

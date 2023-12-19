@@ -4,5 +4,52 @@
     border-color: rgb(3, 7, 89);
     border-radius: 13px;
     color: black;
-    margin-right: 45%;
+    /* margin-right: 45%; */
+    max-width: 800px; /* Set your desired maximum width */
+    margin: 0 auto; 
 }
+
+.checkoutBtn {
+    background-color: #333; 
+    color: #fff; 
+    border: none; 
+    border-radius: 8px; 
+    padding: 12px 12px;
+    margin-top: 20px;
+}
+
+.MyCart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .MyCart .product-list {
+    flex: 1;
+  }
+
+  .price-quantity {
+    margin-top: 10px;
+    font-size: large;
+  }
+  
+  .MyCart .price-checkout {
+    width: 300px; 
+  }
+
+.removeBtn {
+    display: block;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 17px;
+    font-weight: 500;
+    font-family: inherit;
+    color: 373D3F;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    background-color: #df8484;
+    transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+}
+  
