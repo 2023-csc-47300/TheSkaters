@@ -30,6 +30,19 @@ const CartAPI = {
         }
     },
 
+    deleteItemFromCart: async (cart_id) => {
+        try {
+            const url = `http://127.0.0.1:8080/carts/delete?cart_id=${cart_id}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                credentials: 'include', // Include credentials such as cookies for cross-origin requests
+            });
+        } catch (error) {
+            console.log('Error in deleteItemFromCart', error);
+            throw error;
+        }
+    }
+
 }
 
 export default CartAPI

@@ -4,7 +4,7 @@ import '../App.css';
 const SuccessStripe = () => {
     return (
         <>
-        <h2>Payment was successful!</h2>
+        <h2 style={{ textAlign: 'center', marginTop: '30px'}}>Payment was successful!</h2>
         </>
     )
 }

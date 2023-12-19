@@ -1,5 +1,6 @@
 import React from 'react'
 import OrderAPI from "../services/OrderAPI";
+import '../styles/MyCart.css'
 
 const CartCheckout = ({ githubUser }) => {
 
@@ -20,9 +21,7 @@ const CartCheckout = ({ githubUser }) => {
 
 
     return (
-
-        <button className="checkout" onClick={handleCheckout} >Checkout</button>
-
+        <button className="checkoutBtn" onClick={handleCheckout} >Checkout</button>
     )
 }
 
