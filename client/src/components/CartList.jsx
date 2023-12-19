@@ -5,7 +5,8 @@ const CartList = ({ products, orderData }) => {
     const handleRemove = async (cartId) => {
         try {
             const response = await CartAPI.deleteItemFromCart(cartId);
-            window.location.href = '/myCart';
+            window.location.href = '/#/myCart';
+            window.location.reload();
         } catch (error) {
             console.error(error);
         }

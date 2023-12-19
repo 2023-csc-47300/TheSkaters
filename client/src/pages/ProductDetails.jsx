@@ -33,7 +33,7 @@ const ProductDetails = ({ addToCart, githubUser }) => {
             console.log("Current order: ", cur_order)
 
         } else {
-            window.location.href = "/logIn";
+            window.location.href = "/#/logIn";
         }
     };
 

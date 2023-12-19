@@ -12,7 +12,7 @@ const Navbar = ({ cartItemsCount, githubUser }) => {
     const handleGitHubLogout = async () => {
         try {
             const response = await UserAPI.logoutGithub();
-            window.location.href = "/logIn";
+            window.location.href = "/#/logIn";
         } catch (error) {
             console.error("Error during logout:", error);
         }
