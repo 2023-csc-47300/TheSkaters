@@ -2,7 +2,8 @@
 ## Overview
 
 This API serves as the backend for a Rollerblade Store application, providing endpoints to manage rollerblade products.
-Getting Started
+
+Current API version supports [Link Text](https://the-skaters.netlify.app/)
 
 ## Installation
 
@@ -11,6 +12,8 @@ To install the required packages, use pip and the provided requirements.txt file
 ```bash
 pip install -r requirements.txt
 ```
+
+!!!Some libraries in requirements.txt can be outdated!!!
 
 ## Running the Application
 
