@@ -3,7 +3,7 @@
 
 This API serves as the backend for a Rollerblade Store application, providing endpoints to manage rollerblade products.
 
-Current API version supports [Link Text](https://the-skaters.netlify.app/)
+Current API version supports [https://the-skaters.netlify.app/](https://the-skaters.netlify.app/)
 
 ## Installation
 
