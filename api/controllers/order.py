@@ -166,7 +166,7 @@ def get_done():
 
         cursor.close()
         print(f"ORDER {order} DONE")
-        return redirect('http://localhost:3000/success')
+        return redirect('https://the-skaters.netlify.app/success')
         
 
     except Exception as e:
@@ -226,7 +226,7 @@ def get_checkout():
         line_items = price_list_final,
         mode = 'payment',
         success_url = f'http://localhost:8080/orders/done?order_id={order_id}',
-        cancel_url = 'http://localhost:3000/'
+        cancel_url = 'https://the-skaters.netlify.app/'
     )
 
     return redirect(checkout_session.url, code = 303)

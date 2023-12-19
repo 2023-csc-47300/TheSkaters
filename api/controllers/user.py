@@ -258,6 +258,6 @@ def github_login():
         #         "github": user.github
         #     }
         # )
-        return redirect('http://localhost:3000/')
+        return redirect('https://the-skaters.netlify.app/')
 
     return 'Request failed!'
