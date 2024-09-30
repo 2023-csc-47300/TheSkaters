@@ -1,6 +1,6 @@
 # TheSkaters
 
-Web and Frontend Development Hub for TheSkaters eCommerce Skates Store
+TheSkaters - an eCommerce Skates platform
 
 Try it out: https://the-skaters.netlify.app/
 
